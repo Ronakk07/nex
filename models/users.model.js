@@ -56,6 +56,30 @@ userSchema.pre('save', function (next) {
       const salt = bcrypt.genSaltSync(process.env.token);
       user.password = bcrypt.hashSync(user.password, salt);
     }
+    /* Error not handled writing my code just for refernce */
+
+    // let user = this;
+    // if (this.isModified("password") || this.isNew) {
+    //     /* generate 10 long random character */
+    //     bcrypt.genSalt(10, function(err, salt) {
+    //         if (err) {
+    //             return next(err);
+    //         }
+
+    //         /*  mix this 10 long user character with user password */
+    //         bcrypt.hash(user.password, salt, null, function(err, hash) {
+    //             if (err) {
+    //                 return next(err);
+    //             }
+    //             /* Storing the hash in user's password */
+    //             user.password = hash;
+    //             next();
+    //         });
+    //     });
+    // } else {
+    //     return next();
+    // }
+
     next();
   } catch (error) {
     logger.error('error in Password hasing: ', error);
